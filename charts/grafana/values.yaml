@@ -1,0 +1,15 @@
+adminUser: admin
+adminPassword: admin
+
+service:
+  type: NodePort
+  port: 3000
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: VictoriaMetrics
+        type: prometheus
+        access: proxy
+        url: http://vmagent:8428

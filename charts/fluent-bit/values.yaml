@@ -1,0 +1,4 @@
+backend:
+  type: forward
+service:
+  type: ClusterIP
