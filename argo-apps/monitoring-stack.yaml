@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rails-app
+  name: monitoring-stack
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/Oshtuk/monitoring-gitops
     targetRevision: HEAD
-    path: apps/charts/rails-app
+    path: charts
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -16,4 +16,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
