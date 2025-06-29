@@ -23,10 +23,13 @@ spec:
                 type: prometheus
                 access: proxy
                 url: http://victoriametrics-victoria-metrics-single-server.monitoring:8428
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: monitoring
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 3000
+          initialDelaySeconds: 10
+          timeoutSeconds: 1
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
+
