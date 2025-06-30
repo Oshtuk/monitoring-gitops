@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vmagent
+  name: victorialogs
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/Oshtuk/monitoring-gitops
-    path: charts/vmagent
-    targetRevision: main
+    repoURL: https://github.com/VictoriaMetrics/helm-charts
+    chart: victorialogs
+    targetRevision: 0.4.2
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -16,4 +16,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-

@@ -6,21 +6,12 @@ service:
   port: 3000
 
 datasources:
-  datasources:
-    - name: VictoriaMetrics
-      type: prometheus
-      access: proxy
-      url: http://victoriametrics-victoria-metrics-single-server.monitoring.svc.cluster.local:8428
-      isDefault: true
-
-dashboardProviders:
-  dashboardproviders:
-    - name: 'default'
-      orgId: 1
-      folder: ''
-      type: file
-      disableDeletion: false
-      editable: true
-      options:
-        path: /var/lib/grafana/dashboards/default
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: VictoriaMetrics
+        type: prometheus
+        access: proxy
+        url: http://victoriametrics-victoria-metrics-single-server.monitoring.svc.cluster.local:8428
+        isDefault: true
 
