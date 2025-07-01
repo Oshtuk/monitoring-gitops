@@ -1,3 +1,4 @@
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -6,23 +7,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 6.43.3
-    chart: grafana
+    repoURL: https://github.com/Oshtuk/monitoring-gitops # твой репо
+    targetRevision: main
+    path: charts/grafana  # путь к папке, где лежит values.yaml
     helm:
-      values: |
-        adminUser: admin
-        adminPassword: admin
-        service:
-          type: NodePort
-          port: 3000
-        datasources:
-          datasources:
-            - name: VictoriaMetrics
-              type: prometheus
-              access: proxy
-              url: http://victoriametrics-victoria-metrics-single-server.monitoring.svc.cluster.local:8428
-              isDefault: true
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -30,4 +20,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
