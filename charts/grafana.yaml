@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Oshtuk/monitoring-gitops # твой репо
-    targetRevision: main
+    targetRevision: HEAD
     path: charts/grafana  # путь к папке, где лежит values.yaml
     helm:
       valueFiles:
